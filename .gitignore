@@ -1,0 +1,7 @@
+node_modules/
+tmp/
+.vscode/
+*.js
+*.js.map
+*.vsix
+.taskkey

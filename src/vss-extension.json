@@ -1,0 +1,37 @@
+{
+    "manifestVersion": 1,
+    "id": "changed-files",
+    "version": "0.1.7",
+    "name": "Detect changed files",
+    "description": "Set variables based on changed files in the commit.",
+    "categories": [
+        "Build and release"
+    ],
+    "publisher": "mathijsco",
+    "targets": [{
+        "id": "Microsoft.VisualStudio.Services.Cloud"
+    }],
+    "icons": {
+        "default": "images/icon.png"
+     },
+    "contributions": [{
+        "id": "mathijsco-detectchangedfilestask",
+        "type": "ms.vss-distributed-task.task",
+        "targets": [
+            "ms.vss-distributed-task.tasks"
+        ],
+        "properties": {
+            "name": "detectchangedfilestask"
+        }
+    }],
+    "galleryFlags": {
+
+    },
+    "//scopes": [
+        "vso.build_execute",
+        "vso.code"
+    ],
+    "files": [{
+        "path": "detectchangedfilestask", "addressable": true
+    }]
+}

@@ -1,0 +1,46 @@
+{
+    "id": "92124de2-24b4-4796-a2c1-c8b3899ac57e",
+    "name": "detectchangedfilestask",
+    "friendlyName": "Detect changed files",
+    "description": "Set a variable based on changed files in the commit.",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Mathijs van Gool",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 7
+    },
+    "instanceNameFormat": "Detect changes in folder $(monitorPath)",
+    "inputs": [
+        {
+            "name": "monitorPath",
+            "type": "filePath",
+            "label": "Folder with changes",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The path that should contain changes in order to set the variable to `true`."
+        },
+        {
+            "name": "targetVariable",
+            "type": "string",
+            "label": "Variable name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The variable name that is set to `true` in case files are changed on the defined path."
+        },
+        {
+            "name": "alwaysUpdateVariable",
+            "type": "boolean",
+            "label": "Always update variable",
+            "defaultValue": "false",
+            "required": false,
+            "helpMarkDown": "Always change the variable name to `true` or `false`. If the option is not checked; the variable will only get the value `true` in case of updated files. This allows having a default value in the build definition variables."
+        }
+    ],
+    "execution": {
+        "Node": {
+            "target": "index.js"
+        }
+    }
+}
