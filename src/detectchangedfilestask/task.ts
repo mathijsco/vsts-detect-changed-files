@@ -71,7 +71,6 @@ async function run() {
         // SYSTEM_DEFAULTWORKINGDIRECTORY = c:\agent\_work\1\s
 
         const monitorPath = settings.monitorPath;
-
         const axiosConfig: AxiosRequestConfig = {
             headers: {
                 Authorization: "Bearer " + settings.accessToken,
@@ -83,7 +82,7 @@ async function run() {
         tl.debug(`Downloading from '${commitResponse.data._links.changes.href}'...`);
         const changesResponse = await axios.get<IChangesResponse>(commitResponse.data._links.changes.href, axiosConfig);
 
-        tl.debug(`Found ${changesResponse.data.changes.length} changes`);
+        tl.debug(`Found a total of ${changesResponse.data.changes.length} changes in the changeset`);
 
         let result: boolean = false;
         for (const change of changesResponse.data.changes) {
@@ -94,9 +93,12 @@ async function run() {
                 if (path.isInPath(monitorPath, itemPath)) {
                     tl.debug(`Detected a change in file '${itemPath}'`);
                     result = true;
-                    break;
                 }
             }
+        }
+
+        if (result === false) {
+            tl.debug(`No files changed in path '${monitorPath}'`);
         }
 
         if (result === true) {

@@ -10,7 +10,7 @@ export function removeBasePath(basePath: string, path: string): string {
 
 export function normalizePath(path: string): string {
     return path
-        .replace("\\", "/") // replace the slashes to a normal slash
+        .replace(/\\/g, "/") // replace the slashes to a normal slash
         .replace(/(^[\/\\]+|[\/\\]+$)/g, ""); // remove the starting and trailing slashes
 }
 
