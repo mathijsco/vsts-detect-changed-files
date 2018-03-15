@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "changed-files",
-    "version": "0.1.8",
+    "version": "0.1.10",
     "name": "Detect changed files",
     "description": "Set variables based on changed files in the commit.",
     "categories": [
