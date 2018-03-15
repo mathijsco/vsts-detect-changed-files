@@ -2,9 +2,11 @@
   "name": "changed-files",
   "version": "0.0.0",
   "description": "Set variables based on changed files in the commit",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && .\\node_modules\\.bin\\browserify ./detectchangedfilestask/task.js -o ./detectchangedfilestask/index.js",
+    "clean": "del .\\detectchangedfilestask\\*.js",
+    "pack": "tfx extension create --manifestglobs vss-extension.json"
   },
   "author": "Mathijs van Gool",
   "license": "ISC",
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/node": "^9.4.6",
-    "@types/q": "^1.0.7"
+    "@types/q": "^1.0.7",
+    "browserify": "^16.1.1"
   }
 }

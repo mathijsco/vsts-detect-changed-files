@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "changed-files",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "name": "Detect changed files",
     "description": "Set variables based on changed files in the commit.",
     "categories": [
@@ -31,7 +31,9 @@
         "vso.build_execute",
         "vso.code"
     ],
-    "files": [{
-        "path": "detectchangedfilestask", "addressable": true
-    }]
+    "files": [
+        { "path": "detectchangedfilestask/index.js", "addressable": true },
+        { "path": "detectchangedfilestask/task.json", "addressable": true },
+        { "path": "detectchangedfilestask/icon.png", "addressable": true }
+    ]
 }
