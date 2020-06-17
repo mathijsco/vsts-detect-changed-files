@@ -1,7 +1,6 @@
-import * as tl from "vsts-task-lib/task";
+import * as tl from "azure-pipelines-task-lib/task";
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import * as path from "./path";
-
 
 interface ICommitResponse {
     _links: {
@@ -49,8 +48,8 @@ function getSettings(): ISettings {
         repositoryUri: getEnvironmentSetting("BUILD_REPOSITORY_URI"),
         accessToken: getEnvironmentSetting("SYSTEM_ACCESSTOKEN", true),
 
-        monitorPath: path.removeBasePath(sourceDirectory, tl.getPathInput("monitorPath", true)),
-        variableName: tl.getInput("targetVariable", true),
+        monitorPath: path.removeBasePath(sourceDirectory, tl.getPathInput("monitorPath", true)!),
+        variableName: tl.getInput("targetVariable", true)!,
         alwaysUpdateVariable: tl.getBoolInput("alwaysUpdateVariable", false),
     };
 }
@@ -59,8 +58,11 @@ async function run() {
     try {
         const settings = getSettings();
 
+        // Forget the login user name is any. This is added when using dev.azure.com
+        const repositoryUri = settings.repositoryUri.replace(/:\/\/\w+@/, '://');
+
         // replace 'https://myaccount.visualstudio.com/MyProject/_git/RepositoryName' to 'https://myaccount.visualstudio.com/MyProject/_apis/git/repositories/RepositoryName/commits/1234564897841864214d14?api-version=1.0'
-        const repositoryApiUri = settings.repositoryUri.replace(/\/_git\//, "/_apis/git/repositories/") + "/commits/" + settings.commitId + "?api-version=1.0";
+        const repositoryApiUri = repositoryUri.replace(/\/_git\//, "/_apis/git/repositories/") + "/commits/" + settings.commitId + "?api-version=1.0";
 
         // Agent.BuildDirectory = c:\agent\_work\1
         // Agent.WorkFolder = c:\agent\_work
