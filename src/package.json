@@ -19,7 +19,7 @@
     "azure-pipelines-task-lib": "2.9.5",
     "browserify": "16.5.1",
     "supports-color": "7.1.0",
-    "tfx-cli": "0.8.1",
+    "tfx-cli": "0.12.0",
     "typescript": "3.9.5"
   }
 }
